@@ -8,7 +8,7 @@
   <style>
     body {
       margin: 0;
-      background: #f0f0f0;
+      background: #e0f7e0;
       font-family: sans-serif;
     }
     .viewer-container {
@@ -44,14 +44,37 @@
     button:hover {
       background: #0056b3;
     }
+        .hotspot-ui {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.8);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      display: none; /* ซ่อนก่อน */
+      z-index: 10;
+    }
+
+    .hotspot-ui button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      background: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
 <div class="viewer-container">
   <!-- โมเดล -->
-  <model-viewer id="viewer"
+<model-viewer id="viewer"
     src="banana.glb"
+    background-color="#d0f7c0"  
     ar
     ar-modes="webxr scene-viewer quick-look"
     auto-rotate
@@ -60,15 +83,39 @@
     environment-image="neutral"
     shadow-intensity="1">
 
-    <!-- Hotspot -->
     <button slot="hotspot-1"
-            data-position="0m 0.5m 0m"
+            data-position="0m 4.5m 3.5m"
             data-normal="0m 1m 0m"
             style="background: red; color: white; border-radius: 50%;">
-      จุดข้อมูล
+      ลำต้น
     </button>
 
-  </model-viewer>
+    <!-- Hotspot ใบไม้ -->
+    <button slot="hotspot-2"
+            data-position="0m 15m 9m"
+            data-normal="0m 1m 0m"
+            style="background: green; color: white; border-radius: 50%;">
+      ใบไม้
+    </button>
+
+    <!-- Hotspot วิธีดูแล -->
+    <button slot="hotspot-3"
+            data-position="4m 2m 0m"
+            data-normal="0m 1m 0m"
+            style="background: blue; color: white; border-radius: 50%;">
+      วิธีดูแล
+    </button>
+
+</model-viewer>
+
+
+    <!-- UI Popup -->
+  <div id="hotspot-ui" class="hotspot-ui">
+    <p id="hotspot-text">นี่คือข้อความตัวอย่างของ Hotspot</p>
+    <audio id="hotspot-audio" src="info.mp3"></audio>
+    <button id="play-sound">▶ เล่นเสียง</button>
+    <button id="close-ui">✖ ปิด</button>
+  </div>
 
   <!-- ปุ่มควบคุม -->
   <div class="controls">
@@ -81,19 +128,41 @@
 <audio id="infoSound" src="info.mp3"></audio>
 
 <script>
-  const viewer = document.getElementById("viewer");
-  let modelIndex = 1;
+  const hotspots = document.querySelectorAll('model-viewer button[slot^="hotspot"]');
+  const hotspotUI = document.getElementById('hotspot-ui');
+  const hotspotText = document.getElementById('hotspot-text');
+  const hotspotAudio = document.getElementById('hotspot-audio');
+  const playBtn = document.getElementById('play-sound');
+  const closeBtn = document.getElementById('close-ui');
 
-  // เล่นเสียง
-  function playInfo() {
-    document.getElementById("infoSound").play();
-  }
+  // ข้อมูลแต่ละ Hotspot
+  const hotspotData = {
+    "hotspot-1": { text: "นี่คือลำต้นของต้นไม้", audio: "trunk.mp3" },
+    "hotspot-2": { text: "นี่คือใบไม้", audio: "leaves.mp3" },
+    "hotspot-3": { text: "นี่คือวิธีดูแลต้นไม้", audio: "care.mp3" },
+  };
 
-  // เปลี่ยนโมเดล
-  function switchModel() {
-    modelIndex = (modelIndex === 1) ? 2 : 1;
-    viewer.setAttribute("src", `model${modelIndex}.glb`);
-  }
+  hotspots.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const slot = btn.getAttribute('slot');
+      hotspotText.textContent = hotspotData[slot].text;
+      hotspotAudio.src = hotspotData[slot].audio;
+      hotspotUI.style.display = 'block';
+    });
+  });
+
+  // ปุ่มปิด UI
+  closeBtn.addEventListener('click', () => {
+    hotspotUI.style.display = 'none';
+    hotspotAudio.pause();
+    hotspotAudio.currentTime = 0;
+  });
+
+  // ปุ่มเล่นเสียง
+  playBtn.addEventListener('click', () => {
+    hotspotAudio.play();
+  });
+
 </script>
 
 </body>
