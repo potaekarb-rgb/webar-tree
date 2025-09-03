@@ -50,9 +50,11 @@
   <!-- UI Popup -->
   <div id="hotspot-ui" class="hotspot-ui">
     <p id="hotspot-text">นี่คือข้อความตัวอย่างของ Hotspot</p>
-    <audio id="hotspot-audio"></audio>
-    <button id="play-sound">▶ เล่นเสียง</button>
-    <button id="close-ui">✖ ปิด</button>
+    <audio id="hotspot-audio" src="info.mp3"></audio>
+    <div class="button-group">
+      <button id="play-sound">▶ เล่นเสียง</button>
+      <button id="close-ui">✖ ปิด</button>
+    </div>
   </div>
 
   <!-- ปุ่มควบคุม -->
@@ -109,7 +111,7 @@
   // เปลี่ยนโมเดล (ตัวอย่าง)
   function switchModel() {
     const viewer = document.getElementById("viewer");
-    viewer.src = viewer.src.includes("banana.glb") ? "banana2.glb" : "banana.glb";
+    hidden viewer.src = viewer.src.includes("banana.glb") ? "banana2.glb" : "banana.glb";
   }
 </script>
 
