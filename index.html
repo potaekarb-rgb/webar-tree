@@ -2,77 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>WebAR 3D Model with UI</title>
+  <title>Banana 3D Tree AR</title>
   <!-- โหลด model-viewer -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
-  <style>
-    body {
-      margin: 0;
-      background: #e0f7e0;
-      font-family: sans-serif;
-    }
-    .viewer-container {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-    }
-    model-viewer {
-      width: 100%;
-      height: 100%;
-    }
-    /* ปุ่ม UI overlay */
-    .controls {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    button {
-      padding: 8px 12px;
-      border: none;
-      border-radius: 8px;
-      background: #007bff;
-      color: white;
-      cursor: pointer;
-      font-size: 14px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      transition: 0.2s;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-        .hotspot-ui {
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.8);
-      color: white;
-      padding: 20px;
-      border-radius: 10px;
-      display: none; /* ซ่อนก่อน */
-      z-index: 10;
-    }
-
-    .hotspot-ui button {
-      margin-top: 10px;
-      padding: 8px 12px;
-      border: none;
-      border-radius: 5px;
-      background: #4CAF50;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="viewer-container">
   <!-- โมเดล -->
-<model-viewer id="viewer"
+  <model-viewer id="viewer"
     src="banana.glb"
     background-color="#d0f7c0"  
     ar
@@ -83,10 +22,11 @@
     environment-image="neutral"
     shadow-intensity="1">
 
+    <!-- Hotspot ลำต้น -->
     <button slot="hotspot-1"
             data-position="0m 4.5m 3.5m"
             data-normal="0m 1m 0m"
-            style="background: red; color: white; border-radius: 50%;">
+            style="background: red; color: white;">
       ลำต้น
     </button>
 
@@ -94,7 +34,7 @@
     <button slot="hotspot-2"
             data-position="0m 15m 9m"
             data-normal="0m 1m 0m"
-            style="background: green; color: white; border-radius: 50%;">
+            style="background: green; color: white;">
       ใบไม้
     </button>
 
@@ -102,17 +42,15 @@
     <button slot="hotspot-3"
             data-position="4m 2m 0m"
             data-normal="0m 1m 0m"
-            style="background: blue; color: white; border-radius: 50%;">
+            style="background: blue; color: white;">
       วิธีดูแล
     </button>
+  </model-viewer>
 
-</model-viewer>
-
-
-    <!-- UI Popup -->
+  <!-- UI Popup -->
   <div id="hotspot-ui" class="hotspot-ui">
     <p id="hotspot-text">นี่คือข้อความตัวอย่างของ Hotspot</p>
-    <audio id="hotspot-audio" src="info.mp3"></audio>
+    <audio id="hotspot-audio"></audio>
     <button id="play-sound">▶ เล่นเสียง</button>
     <button id="close-ui">✖ ปิด</button>
   </div>
@@ -124,7 +62,7 @@
   </div>
 </div>
 
-<!-- เสียง -->
+<!-- เสียงหลัก -->
 <audio id="infoSound" src="info.mp3"></audio>
 
 <script>
@@ -137,9 +75,9 @@
 
   // ข้อมูลแต่ละ Hotspot
   const hotspotData = {
-    "hotspot-1": { text: "นี่คือลำต้นของต้นไม้", audio: "trunk.mp3" },
-    "hotspot-2": { text: "นี่คือใบไม้", audio: "leaves.mp3" },
-    "hotspot-3": { text: "นี่คือวิธีดูแลต้นไม้", audio: "care.mp3" },
+    "hotspot-1": { text: "นี่คือลำต้นของต้นกล้วย", audio: "trunk.mp3" },
+    "hotspot-2": { text: "นี่คือใบกล้วย", audio: "leaves.mp3" },
+    "hotspot-3": { text: "นี่คือวิธีดูแลต้นกล้วย", audio: "care.mp3" },
   };
 
   hotspots.forEach(btn => {
@@ -151,18 +89,28 @@
     });
   });
 
-  // ปุ่มปิด UI
+  // ปิด UI
   closeBtn.addEventListener('click', () => {
     hotspotUI.style.display = 'none';
     hotspotAudio.pause();
     hotspotAudio.currentTime = 0;
   });
 
-  // ปุ่มเล่นเสียง
+  // เล่นเสียง
   playBtn.addEventListener('click', () => {
     hotspotAudio.play();
   });
 
+  // ฟังข้อมูล (ปุ่มหลัก)
+  function playInfo() {
+    document.getElementById("infoSound").play();
+  }
+
+  // เปลี่ยนโมเดล (ตัวอย่าง)
+  function switchModel() {
+    const viewer = document.getElementById("viewer");
+    viewer.src = viewer.src.includes("banana.glb") ? "banana2.glb" : "banana.glb";
+  }
 </script>
 
 </body>
