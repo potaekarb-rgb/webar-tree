@@ -131,9 +131,12 @@ button[slot^="hotspot"] {
     left: 0;
     transform: none;
     padding: 0 10px;
+    position: absolute;
+    z-index: 10002; /* ✅ ให้ลอยบนสุด */
   }
 
   .controls button {
+    display: block;
     width: 100%;
     font-size: 20px;
     padding: 18px 24px;
