@@ -129,50 +129,39 @@ button[slot^="hotspot"] {
 }
 
 /* ------------------------------
-   Responsive อัจฉริยะ
+   Responsive มือถือ
 ------------------------------- */
-@media (max-width: 1024px) {
-  .hotspot-ui {
-    max-width: 80%;
-    font-size: 20px;
-    padding: 35px 25px;
-  }
-
-  .hotspot-ui button {
-    font-size: 22px;
-    min-width: 150px;
-  }
-}
-
 @media (max-width: 768px) {
   .hotspot-ui {
-    position: fixed; /* ครอบเต็มหน้าจอ */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: translate(-50%, -50%);
-    border-radius: 0;
-    padding: 40px 20px;
-    font-size: 50px;
-    line-height: 1.6;
-    background: rgba(0,0,0,0.95);
-    overflow-y: auto; /* scroll ได้ถ้าข้อความยาว */
+    position: fixed !important;  /* ครอบเต็มหน้าจอ */
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important; /* ตรงกลาง */
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    padding: 40px 20px !important;
+    border-radius: 0 !important;
+    font-size: 40px !important;  /* ฟอนต์ใหญ่ขึ้น */
+    line-height: 1.8 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
   }
 
-
-  /* ปุ่มใน popup */
   .hotspot-ui .button-group {
-    flex-direction: column;
-    gap: 20px;
-    width: 90%;
-    align-items: center;
+    flex-direction: column !important;
+    gap: 25px !important;
+    width: 100% !important;
+    align-items: center !important;
   }
 
   .hotspot-ui button {
-    width: 80%;
-    padding: 18px 0;
-    font-size: 28px;
+    width: 80% !important;
+    padding: 25px 0 !important;
+    font-size: 28px !important; /* ปุ่มใหญ่ขึ้น */
   }
 
   .controls {
@@ -189,16 +178,5 @@ button[slot^="hotspot"] {
     width: 100%;
     font-size: 20px;
     padding: 18px 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hotspot-ui p {
-    font-size: 28px;
-  }
-
-  .hotspot-ui button {
-    font-size: 28px;
-    padding: 20px 0;
   }
 }
