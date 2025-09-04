@@ -13,6 +13,7 @@ model-viewer {
   height: 100%;
   /* ให้ model-viewer รับ input ได้ */
   pointer-events: auto;
+  background-color: #f5f0e1;
 }
 
 /* ------------------------------
@@ -95,7 +96,7 @@ button[slot^="hotspot"] {
   transform: translateX(-50%);
   display: flex;
   gap: 15px;
-  z-index: 10005;
+  z-index: 20000;
   pointer-events: auto;
 }
 
@@ -111,6 +112,7 @@ button[slot^="hotspot"] {
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   transition: 0.2s;
   min-width: 180px;
+  pointer-events: auto;
 }
 
 .controls button:hover {
