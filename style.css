@@ -135,7 +135,7 @@ button[slot^="hotspot"] {
     transform: none;
     border-radius: 0;
     padding: 30px 20px;
-    font-size: 20px;
+    font-size: 50px;
     line-height: 1.8;
     background: rgba(0,0,0,0.95);
     display: flex;
@@ -154,7 +154,7 @@ button[slot^="hotspot"] {
   .hotspot-ui button {
     width: 80%;
     padding: 20px 0;
-    font-size: 22px;
+    font-size: 50px;
   } 
   
   .controls {
