@@ -151,7 +151,7 @@ button[slot^="hotspot"] {
   }
 
   .hotspot-ui p {
-    font-size: 70px !important; /* ขนาดใหญ่และอ่านง่าย */
+    font-size: 120px !important; /* ขนาดใหญ่และอ่านง่าย */
     line-height: 1.8;
     text-align: center;
   }  
