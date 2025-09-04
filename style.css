@@ -142,7 +142,7 @@ button[slot^="hotspot"] {
     max-width: none !important;
     padding: 40px 20px !important;
     border-radius: 0 !important;
-    font-size: 60px !important;  /* ฟอนต์ใหญ่ขึ้น */
+    font-size: 32px !important;  /* ฟอนต์ใหญ่ขึ้น */
     line-height: 1.8 !important;
     display: flex !important;
     flex-direction: column !important;
