@@ -137,36 +137,39 @@ button[slot^="hotspot"] {
     top: 50% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important; /* ตรงกลาง */
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none !important;   
-    padding: 40px 20px !important;
-    border-radius: 0 !important;
-    line-height: 1.8 !important;
+    width: 90% !important;
+    max-width: 600px !important;  
+    height: auto !important; /* สูงพอดีกับเนื้อหา */
+    padding: 30px 20px !important;
+    border-radius: 15px !important;
+    line-height: 1.6 !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
     text-align: center !important;
+    background: rgba(0,0,0,0.95) !important;
   }
 
   .hotspot-ui p {
-    font-size: 120px !important; /* ขนาดใหญ่และอ่านง่าย */
-    line-height: 1.8;
+    font-size: 42px !important; /* อ่านง่ายสำหรับผู้สูงอายุ */
+    line-height: 1.6;
     text-align: center;
+    word-break: break-word;
   }  
 
   .hotspot-ui .button-group {
     flex-direction: column !important;
-    gap: 25px !important;
+    gap: 20px !important;
     width: 100% !important;
     align-items: center !important;
   }
 
   .hotspot-ui button {
     width: 80% !important;
-    padding: 25px 0 !important;
-    font-size: 28px !important; /* ปุ่มใหญ่ขึ้น */
+    padding: 20px 0 !important;
+    font-size: 28px !important; /* ปุ่มใหญ่และกดง่าย */
+    border-radius: 12px !important;
   }
 
   .controls {
