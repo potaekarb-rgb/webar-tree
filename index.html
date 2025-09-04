@@ -82,18 +82,22 @@
     "hotspot-3": { text: "นี่คือวิธีดูแลต้นกล้วย", audio: "care.mp3" },
   };
 
+  // เปิด Hotspot UI เมื่อคลิกหรือแตะ
   hotspots.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const slot = btn.getAttribute('slot');
-      hotspotText.textContent = hotspotData[slot].text;
-      hotspotAudio.src = hotspotData[slot].audio;
-      hotspotUI.style.display = 'block';
+    ["click", "touchstart"].forEach(evt => {
+      btn.addEventListener(evt, (e) => {
+        e.stopPropagation(); // ป้องกัน event ซ้อน
+        const slot = btn.getAttribute('slot');
+        hotspotText.textContent = hotspotData[slot].text;
+        hotspotAudio.src = hotspotData[slot].audio;
+        hotspotUI.classList.add('active'); // ใช้ class active แทน style.display
+      });
     });
   });
 
   // ปิด UI
   closeBtn.addEventListener('click', () => {
-    hotspotUI.style.display = 'none';
+    hotspotUI.classList.remove('active');
     hotspotAudio.pause();
     hotspotAudio.currentTime = 0;
   });
@@ -113,6 +117,15 @@
     const viewer = document.getElementById("viewer");
     viewer.src = viewer.src.includes("banana.glb") ? "banana2.glb" : "banana.glb";
   }
+
+  // ปิด Hotspot UI หากคลิกรอบนอก popup
+  document.addEventListener('click', (e) => {
+    if (!hotspotUI.contains(e.target)) {
+      hotspotUI.classList.remove('active');
+      hotspotAudio.pause();
+      hotspotAudio.currentTime = 0;
+    }
+  });
 </script>
 
 </body>
