@@ -151,19 +151,15 @@ button[slot^="hotspot"] {
     left: 0;
     width: 100%;
     height: 100%;
-    transform: none;
+    transform: translate(-50%, -50%);
     border-radius: 0;
     padding: 40px 20px;
-    font-size: 24px;
+    font-size: 50px;
     line-height: 1.6;
     background: rgba(0,0,0,0.95);
     overflow-y: auto; /* scroll ได้ถ้าข้อความยาว */
   }
 
-  /* ขนาดฟอนต์ข้อความใน popup */
-  .hotspot-ui p {
-    font-size: 75px;  /* ปรับให้ใหญ่พออ่านบนมือถือ */
-  }
 
   /* ปุ่มใน popup */
   .hotspot-ui .button-group {
@@ -171,13 +167,12 @@ button[slot^="hotspot"] {
     gap: 20px;
     width: 90%;
     align-items: center;
-    margin-top: 30px;
   }
 
   .hotspot-ui button {
     width: 80%;
     padding: 18px 0;
-    font-size: 26px;
+    font-size: 28px;
   }
 
   .controls {
