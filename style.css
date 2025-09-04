@@ -126,6 +126,37 @@ button[slot^="hotspot"] {
 
 /* Responsive มือถือ */
 @media (max-width: 768px) {
+  .hotspot-ui {
+    position: fixed; /* ครอบหน้าจอเต็ม */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    border-radius: 0;
+    padding: 30px 20px;
+    font-size: 20px;
+    line-height: 1.8;
+    background: rgba(0,0,0,0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hotspot-ui .button-group {
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .hotspot-ui button {
+    width: 80%;
+    padding: 20px 0;
+    font-size: 22px;
+  } 
+  
   .controls {
     flex-direction: column;
     gap: 12px;
@@ -142,34 +173,5 @@ button[slot^="hotspot"] {
     padding: 18px 24px;
   }
 
-  .hotspot-ui {
-    position: fixed; /* ครอบหน้าจอเต็มมือถือ */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: none;
-    border-radius: 0;
-    padding: 30px 20px;
-    font-size: 20px;
-    line-height: 1.8;
-    background: rgba(0,0,0,0.95);
-  }
 
-  .hotspot-ui button {
-    width: 80%; /* ปุ่มใหญ่เต็มแนวนอน */
-    padding: 20px 0;
-    font-size: 22px;
-    min-width: unset;
-    border-radius: 12px;
-  }
-
-
-  .hotspot-ui .button-group {
-    flex-direction: column;
-    gap: 20px;
-    margin-top: 30px;
-    width: 100%;
-    align-items: center;
-  }
 }
